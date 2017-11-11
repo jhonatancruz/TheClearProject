@@ -28,7 +28,7 @@ def index():
 
 @app.route('/test')
 def test():
-    
+
     return render_template('maps.html')
 
 #bot for sat phones
