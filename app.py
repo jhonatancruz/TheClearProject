@@ -34,7 +34,7 @@ def index():
 def test():
     stations =  db.execute("SELECT * FROM stations")
     for station in stations:
-        print station["description"]
+        print(station["description"])
     return render_template('maps.html')
 
 #bot for sat phones
@@ -69,7 +69,7 @@ def sms_reply():
             latitude = float(coords[1])
 
             phase = 2
-            resp.message("Your location has been received! What would you like to do?")
+            resp.message("Your location has been received! What would you like to do?((i)ssue, (o)ptions, (s)tatus, (f)inish)")
 
             get_water_info(longitude, latitude)
             return str(resp)
