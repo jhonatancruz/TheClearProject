@@ -243,7 +243,6 @@ def sms_reply():
 #4 = multiple people saying its horrible. 4 is the same as 3 on the map in terms of color and severity,
 #except we prioritize it above 3.
 def get_water_info(longitude, latitude) :
-    
     stations = db.execute("SELECT * FROM stations")
 
     print(len(stations))

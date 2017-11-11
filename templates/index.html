@@ -33,6 +33,16 @@
 
     <!-- app's own JavaScript -->
     <!-- <script src="/static/js/mapscripts.js"></script> -->
+    <style>
+    #alert{
+      position: absolute;
+      top: 50px;
+      left: 28%;
+      width: 600px;
+      /*height: 100px;
+      border: 3px solid #73AD21;*/
+    }
+    </style>
   </head>
 
   <body id="page-top">
@@ -47,18 +57,24 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Maps</a>
+              <a class="nav-link js-scroll-trigger" href="#maps">Maps</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">How it Works</a>
+              <a class="nav-link js-scroll-trigger" href="#howitworks">How it Works</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">About Us</a>
+              <button class="btn btn-danger"><a class="nav-link js-scroll-trigger" href="/login">Help Now</a></button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+
+    <div class="container">
+      <div class="alert alert-danger" id="alert">
+        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+      </div>
+    </div>
 
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">
@@ -85,7 +101,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
     </section>
 
-    <section id="services">
+    <section id="howitworks">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
