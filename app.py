@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request
 from twilio import twiml
 from math import cos, asin, sqrt
 from cs50 import SQL
-
-from cs50 import SQL
+from twilio.twiml.messaging_response import MessagingResponse
 from flask import Flask, flash, redirect, render_template, request, session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
@@ -12,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app= Flask(__name__)
 
 # Databse Usage
-# db = SQL("sqlite:///database.db")
+db = SQL("sqlite:///database.db")
 # use db.execute("YOUR SQL CODE HERE")
 #   -- Will always return a list of dicts, which you must index into as follows
 #   ----[int][key] like [0]["description"] will return first row's description
@@ -117,8 +115,8 @@ def sms_reply():
     message_body = message_body.lower()
 
     print(message_body + "  "+ number)
-    # resp = MessagingResponse()
-    resp = twiml.Response()
+    resp = MessagingResponse()
+    #resp = twiml.Response()
 
     print("PHASE: " + str(phase))
     if phase == 0 :
@@ -245,6 +243,11 @@ def sms_reply():
 #4 = multiple people saying its horrible. 4 is the same as 3 on the map in terms of color and severity,
 #except we prioritize it above 3.
 def get_water_info(longitude, latitude) :
+    
+    stations = db.execute("SELECT * FROM stations")
+
+    print(len(stations))
+
     key = 0
     score = 0
 
