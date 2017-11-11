@@ -14,7 +14,7 @@
         <link href="static/css/mapstyles.css" rel="stylesheet"/>
 
         <!-- https://developers.google.com/maps/documentation/javascript/ -->
-        <script src="https://maps.googleapis.com/maps/api/js?key={{ key | urlencode }}&v=3.exp"></script>
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key={{ key | urlencode }}&v=3.exp"></script> -->
 
         <!-- http://jquery.com/ -->
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -26,26 +26,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
         <!-- app's own JavaScript -->
-        <script src="/static/js/mapscripts.js"></script>
+        <script src="/static/js/mapscripts2.js"></script>
+
+
 
         <title>Mashup</title>
 
     </head>
     <body>
-
         <!-- Fill viewport -->
         <div class="container-fluid">
 
             <!-- https://developers.google.com/maps/documentation/javascript/tutorial -->
             <div id="map-canvas"></div>
 
-            <!-- http://getbootstrap.com/css/#forms -->
-            <!-- <form id="form">
-                <div class="form-group">
-                    <label class="sr-only" for="q">City, State, Postal Code</label>
-                    <input class="form-control" id="q" placeholder="City, State, Postal Code" type="text"/>
-                </div>
-            </form> -->
+            
+
+            <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=initMap">
+            </script>
+
+
         </div>
 
 

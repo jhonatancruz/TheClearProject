@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request
 from twilio import twiml
 from math import cos, asin, sqrt
+from cs50 import SQL
+
 
 app= Flask(__name__)
+
+db = SQL("sqlite:///database.db")
 
 phase = 0
 score = 0
@@ -24,6 +28,7 @@ def index():
 
 @app.route('/test')
 def test():
+    
     return render_template('maps.html')
 
 #bot for sat phones

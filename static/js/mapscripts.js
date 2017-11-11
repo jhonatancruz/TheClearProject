@@ -38,13 +38,13 @@ $(document).ready(function() {
     // Options for map
     // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     let options = {
-        center: {lat: -25.363, lng: 131.044}, // Stanford, California
+        center: {lat: 37.4236, lng: -122.1619}, // Stanford, California
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 14,
         panControl: true,
         styles: styles,
-        zoom: 7,
+        zoom: 13,
         zoomControl: true
     };
 
@@ -56,19 +56,18 @@ $(document).ready(function() {
 
     // Configure UI once Google Map is idle (i.e., loaded)
     google.maps.event.addListenerOnce(map, "idle", configure);
-    google.maps.event.addListenerOnce(map, "idle", addMarker);
 
 });
 
 
 // Add marker for place to map
-function addMarker(place)
+function addMarker(myLatLng)
 {
-  var marker = new google.maps.Marker({
-  position: {lat: -25.363, lng: 131.044},
-  map: map,
-  title: 'Hello World!'
-});
+    var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+    });
 }
 
 
@@ -91,39 +90,6 @@ function configure()
         update();
     });
 
-    // // Configure typeahead
-    // $("#q").typeahead({
-    //     highlight: false,
-    //     minLength: 1
-    // },
-    // {
-    //     display: function(suggestion) { return null; },
-    //     limit: 10,
-    //     source: search,
-    //     templates: {
-    //         suggestion: Handlebars.compile(
-    //             "<div>" +
-    //             "TODO" +
-    //             "</div>"
-    //         )
-    //     }
-    // });
-
-    // Re-center map after place is selected from drop-down
-    $("#q").on("typeahead:selected", function(eventObject, suggestion, name) {
-
-        // Set map's center
-        map.setCenter({lat: parseFloat(suggestion.latitude), lng: parseFloat(suggestion.longitude)});
-
-        // Update UI
-        update();
-    });
-
-    // Hide info window when text box has focus
-    $("#q").focus(function(eventData) {
-        info.close();
-    });
-
     // Re-enable ctrl- and right-clicking (and thus Inspect Element) on Google Map
     // https://chrome.google.com/webstore/detail/allow-right-click/hompjdfbfmmmgflfjdlnkohcplmboaeo?hl=en
     document.addEventListener("contextmenu", function(event) {
@@ -143,23 +109,11 @@ function configure()
 // Remove markers from map
 function removeMarkers()
 {
-    // TODO
+    marker.setMap(null);
 }
 
 
-// Search database for typeahead's suggestions
-function search(query, syncResults, asyncResults)
-{
-    // Get places matching query (asynchronously)
-    let parameters = {
-        q: query
-    };
-    $.getJSON("/search", parameters, function(data, textStatus, jqXHR) {
 
-        // Call typeahead's callback with search results (i.e., places)
-        asyncResults(data);
-    });
-}
 
 
 // Show info window at marker with content
