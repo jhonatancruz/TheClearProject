@@ -243,14 +243,31 @@ def sms_reply():
 #4 = multiple people saying its horrible. 4 is the same as 3 on the map in terms of color and severity,
 #except we prioritize it above 3.
 def get_water_info(longitude, latitude) :
+    
     stations = db.execute("SELECT * FROM stations")
 
-    print(len(stations))
+    distance = 9999999
+    index = 0
 
-    key = 0
-    score = 0
+    for x in range(len(stations)):
+        lon = stations[x]["longitude"]
+        lat = stations[x]["latitude"]
+        dis = distance_coords(longitude, latitude, lon, lat)
+
+        if dis < distance :
+            index = x
+            distance = dis
+
+    key = index
+
+    print("KEY INDEX = " + str(key))
+
+    score = stations[key]["status"]
+
+    print("SCORE = " + str(score))
 
     return
+
 
 #formats our long/lat input so that its more user friendly.
 def get_coords(str) :
@@ -288,7 +305,7 @@ def log_issue_details(str) :
     return
 
 #given 2 long/latitudes, get the distance between them.
-def distance(lat1, lon1, lat2, lon2):
+def distance_coords(lat1, lon1, lat2, lon2):
     p = 0.017453292519943295     #Pi/180
     a = 0.5 - cos((lat2 - lat1) * p)/2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2
     return 12742 * asin(sqrt(a)) #2*R*asin...
