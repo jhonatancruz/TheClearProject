@@ -6,7 +6,11 @@ from cs50 import SQL
 
 app= Flask(__name__)
 
-db = SQL("sqlite:///database.db")
+# Databse Usage
+# db = SQL("sqlite:///database.db")
+# use db.execute("YOUR SQL CODE HERE")
+#   -- Will always return a list of dicts, which you must index into as follows
+#   ----[int][key] like [0]["description"] will return first row's description
 
 phase = 0
 score = 0
@@ -28,7 +32,10 @@ def index():
 
 @app.route('/test')
 def test():
-    
+    stations =  db.execute("SELECT * FROM stations")
+    for station in stations:
+        print station["description"]
+
     return render_template('maps.html')
 
 #bot for sat phones
