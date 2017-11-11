@@ -24,7 +24,7 @@ def index():
 
 @app.route('/test')
 def test():
-    return render_template('test.html', key="AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ")
+    return render_template('maps.html')
 
 #bot for sat phones
 @app.route("/sms", methods=['GET', 'POST'])
