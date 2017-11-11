@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from twilio import twiml
+from math import cos, asin, sqrt
 
 app= Flask(__name__)
 
@@ -25,8 +26,7 @@ def index():
 def test():
     return render_template('test.html', key="AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ")
 
-
-
+#bot for sat phones
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
     global phase
@@ -41,7 +41,8 @@ def sms_reply():
     message_body = message_body.lower()
 
     print(message_body + "  "+ number)
-    resp = MessagingResponse()
+    # resp = MessagingResponse()
+    resp = twiml.Response()
 
     print("PHASE: " + str(phase))
     if phase == 0 :
