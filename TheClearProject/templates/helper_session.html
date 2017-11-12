@@ -10,11 +10,11 @@
     <br>
     <br>
     <div class="container p-5 rounded" style="background-color:white;">
-    <form action="/login" method="post">
+    <form action="/helper_session" method="post">
       <center><h3>Help Form</h3></center>
       <div class="form-group">
         <label for="exampleSelect1">Station ID </label>
-        <select class="form-control" id="exampleSelect1">
+        <select class="form-control" id="exampleSelect1" name="stationid">
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -27,12 +27,12 @@
       </div>
       <div class="form-group">
         <label for="exampleTextarea">Pledge Description</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        <textarea class="form-control" id="exampleTextarea" name="pledge_descript" rows="3"></textarea>
       </div>
       <div class="form-group row">
         <label for="example-date-input" class="col-2 col-form-label">Pledge Date</label>
         <div class="col-10">
-          <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+          <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="date">
         </div>
       </div>
         <center><button class="btn btn-primary" type="submit">Submit</button></center>

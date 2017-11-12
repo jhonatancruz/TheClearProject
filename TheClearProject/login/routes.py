@@ -26,6 +26,16 @@ def userPage():
 
 @mod.route('/helper_session', methods=["GET", "POST"])
 def helper_session():
+    if request.method == "POST":
+        station=request.form.get("stationid")
+        pledge=request.form.get("pledge_descript")
+        date=request.form.get("date")
+        config.db.execute("INSERT INTO helper_session (helper_id, station_id, pledge_description, pledge_date) VALUES(1, :station, :pledge, :date)",station=station, pledge=pledge, date=date)
+        # print(station, pledge, date)
+        return redirect('/userPage')
+
+        # config.db.execute("SELECT pledge_description, pledge_date FROM helper_session WHERE helper_id==1")
+
     return render_template('helper_session.html')
 
 
