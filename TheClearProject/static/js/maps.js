@@ -41,17 +41,7 @@ function myMap() {
 
 	infowindow = new google.maps.InfoWindow();
 
-  // function load_stations(){
-  //   $.getJSON("/station_info", function(data) {
-  //     stations = data;
-  //     alert(stations[0].sponsor);
-  //   });
-  // };
-  //
-  // load_stations();
-//  alert(stations[1].sponsor);
-
-  var jsonIssues = {};
+  var stations = {};
   $.ajax({
       url: "/station_info",
       async: false,
@@ -61,8 +51,8 @@ function myMap() {
       }
   });
 
+  console.log(stations);
   //alert(stations[1].sponsor);
-  var length = parseInt(stations.length);
 
   //hardcoded 9 in to test, but should be length.
   for(i = 0; i < 9; i++) {
@@ -109,7 +99,7 @@ function myMap() {
     descrip += stations[i].description;
     descrip += "</p>";
 
-
+    //alert(stations[i].sponsor);
 
     var content_each = "";
     content_each += "<h6 align='center' style='border:3px solid black'>";
@@ -127,6 +117,8 @@ function myMap() {
     content_each += descrip;
 
     content_each += button_help;
+
+
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {

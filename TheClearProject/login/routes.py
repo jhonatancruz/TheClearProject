@@ -30,7 +30,8 @@ def helper_session():
         station=request.form.get("stationid")
         pledge=request.form.get("pledge_descript")
         date=request.form.get("date")
-        config.db.execute("INSERT INTO helper_session (helper_id, station_id, pledge_description, pledge_date) VALUES(1, :station, :pledge, :date)",station=station, pledge=pledge, date=date)
+
+        config.db.execute("INSERT INTO helper_session (helper_id, station_id, pledge_description, pledge_date) VALUES(1, :station, :pledge, :date_)",station=str(station), pledge=str(pledge), date_=str(date))
         # print(station, pledge, date)
         return redirect('/userPage')
 
