@@ -67,7 +67,30 @@ function myMap() {
   //hardcoded 9 in to test, but should be length.
   for(i = 0; i < 9; i++) {
     var position = new google.maps.LatLng(stations[i].latitude, stations[i].longitude);
-    var image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    //Converts 0-3 into user-readable format
+    var status_readable;
+
+    if (stations[i].status == 0){
+      status_readable = "Excellent condition!";
+      var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterGreen.png";
+    };
+
+    if (stations[i].status == 1){
+      status_readable = "Beginning to show signs of breakdown.";
+      var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterYellow.png";
+    };
+
+    if (stations[i].status == 2){
+      status_readable = "Frequently malfunctioning.";
+      var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterOrange.png";
+    };
+
+    if (stations[i].status == 3){
+      status_readable = "Disrepair.";
+      var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterRed.png";
+
+    };
+
     //var image = "/img/waterGreen.png";
     var marker = new google.maps.Marker({
 			position: position,
@@ -83,24 +106,7 @@ function myMap() {
     descrip += stations[i].description;
     descrip += "</p>";
 
-    //Converts 0-3 into user-readable format
-    var status_readable;
 
-    if (stations[i].status == 0){
-      status_readable = "Excellent condition!";
-    };
-
-    if (stations[i].status == 1){
-      status_readable = "Beginning to show signs of breakdown.";
-    };
-
-    if (stations[i].status == 2){
-      status_readable = "Frequently malfunctioning.";
-    };
-
-    if (stations[i].status == 3){
-      status_readable = "Disrepair.";
-    };
 
     var content_each = "";
     content_each += "<h6 align='center' style='border:3px solid black'>";
