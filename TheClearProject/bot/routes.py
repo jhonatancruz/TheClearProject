@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, Blueprint
 from twilio import twiml
 from math import cos, asin, sqrt
 from cs50 import SQL
-from twilio.twiml.messaging_response import MessagingResponse
+# from twilio.twiml.messaging_response import MessagingResponse
 from .. import config
 
 mod = Blueprint('bot', __name__)
@@ -176,7 +176,7 @@ def get_water_info(longitude, latitude, number) :
     global key
     key = index
 
-    global score 
+    global score
     score = stations[key]["status"]
 
     numbers = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id AND client_phone = :number", station_id = key, number = number)
