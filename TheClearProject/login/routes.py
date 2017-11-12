@@ -40,9 +40,9 @@ def login():
         password= user[0]["hash"]
 
         if request.form.get("username")== username and request.form.get("password")== password:
-            return render_template("userPage.html")
+            return redirect(url_for('login.userPage'))
         else:
-            return redirect("/userPage")
+            return render_template("login.html")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:

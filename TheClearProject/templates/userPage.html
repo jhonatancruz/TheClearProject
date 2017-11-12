@@ -1,74 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-  <head>
+{% block main %}
+<section class="bg-primary" id="maps">
+  <div id="googleMap" style="width:100%;height:400px;"></div>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Bootstrap core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template -->
-    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <!-- Plugin CSS -->
-    <link href="static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="static/css/creative.min.css" rel="stylesheet">
-    <link href="static/css/mapstyles.css" rel="stylesheet"/>
+    <script src = "/static/js/maps.js"></script>
 
-    <!-- https://developers.google.com/maps/documentation/javascript/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ key | urlencode }}&v=3.exp"></script>
-
-    <!-- http://jquery.com/ -->
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
-    <!-- http://getbootstrap.com/ -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- http://handlebarsjs.com/ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
-
-  </head>
-
-<body id="page-top">
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">The Clear Project</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#maps">Maps</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#howitworks">How it Works</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">Help Now</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-
-  <section class="bg" id="maps">
-    <div id="googleMap" style="width:100%;height:400px;"></div>
-
-      <script src = "/static/js/maps.js"></script>
-
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
-  </section>
-
-  <section>
-
-  </section>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
+</section>
 </body>
 </html>
+{% endblock %}
