@@ -24,7 +24,10 @@ def userPage():
     # print(what[1]['pledge_description'])
     return render_template("userPage.html", data=data)
 
-    # Kenya: sponsor
+@mod.route('/helper_session', methods=["GET", "POST"])
+def helper_session():
+    return render_template('helper_session.html')
+
 
 @mod.route('/login', methods=["GET", "POST"])
 def login():
