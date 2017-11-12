@@ -58,23 +58,23 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
 </section>
 <section><center>
-  <h2>Your Pledge</h2>
+  <h2>Your Pledge/s</h2>
   <br>
   <div class="container">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Where is it?</th>
         <th>What is it?</th>
         <th>When is it?</th>
       </tr>
     </thead>
     <tbody>
+      {%for x in data%}
       <tr>
-        <td>Dont know yet</td>
-        <td>{{what}}</td>
-        <td>{{when}}</td>
+        <td>{{x["pledge_description"]}}</td>
+        <td>{{x["pledge_date"]}}</td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>

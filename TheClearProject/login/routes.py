@@ -16,10 +16,13 @@ mod = Blueprint('login', __name__)
 @mod.route('/userPage', methods=["GET","POST"])
 def userPage():
     # where=config.db.execute("SELECT sponsor FROM stations WHERE station_id==(SELECT ))
-    what= config.db.execute("SELECT pledge_description FROM helper_session WHERE helper_id==1")
-    when= config.db.execute("SELECT pledge_date FROM helper_session WHERE helper_id==1")
-    # print(what[])
-    return render_template("userPage.html", what=what, when=when)
+    data= config.db.execute("SELECT pledge_description, pledge_date FROM helper_session WHERE helper_id==1")
+    #when= config.db.execute("SELECT pledge_date FROM helper_session WHERE helper_id==1")
+    # for x in what:
+    #     print(x.values())
+    # print(what[0]['pledge_description'])
+    # print(what[1]['pledge_description'])
+    return render_template("userPage.html", data=data)
 
     # Kenya: sponsor
 
