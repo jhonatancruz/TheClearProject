@@ -31,6 +31,12 @@
     <!-- http://handlebarsjs.com/ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
+    <script>
+    setTimeout(function() {
+      $('#alert').fadeOut('fast');
+    }, 1000);
+    </script>
+
     <!-- app's own JavaScript -->
     <!-- <script src="/static/js/mapscripts.js"></script> -->
     <style>
@@ -43,6 +49,7 @@
       border: 3px solid #73AD21;*/
     }
     </style>
+
   </head>
 
   <body id="page-top">
@@ -70,11 +77,11 @@
       </div>
     </nav>
 
-    <div class="container">
+
       <div class="alert alert-danger" id="alert">
         <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
       </div>
-    </div>
+
 
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">

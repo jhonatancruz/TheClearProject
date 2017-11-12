@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, request, Blueprint, flash, redirect, url_for
 from cs50 import SQL
+from .. import config
 
 #REMOVE LIBRARIES IF NOT NEEDED
 from tempfile import mkdtemp
@@ -12,9 +13,14 @@ mod = Blueprint('login', __name__)
 
 #Must use mod since we're in Blueprint
 
+@mod.route('/userPage', methods=["GET","POST"])
+def userPage():
+    return render_template("userPage.html")
+
 @mod.route('/login', methods=["GET", "POST"])
 def login():
     """Log user in"""
+
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -28,15 +34,15 @@ def login():
             return("must provide password")
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
+        # for numOfrows in len(config.db.execute("SELECT COUNT(*) FROM helper_users")
+        user = config.db.execute("SELECT username, hash FROM helper_users")
+        username= user[0]["username"]
+        password= user[0]["hash"]
 
-        # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return("invalid username and/or password")
-
-        # Redirect user to home page
-        return redirect("/")
+        if request.form.get("username")== username and request.form.get("password")== password:
+            return render_template("userPage.html")
+        else:
+            return redirect("/userPage")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
