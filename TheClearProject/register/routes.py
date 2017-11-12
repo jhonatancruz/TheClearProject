@@ -2,6 +2,11 @@
 
 from flask import Flask, render_template, request, Blueprint
 
+#REMOVE LOGINS IF NOT NEEDED
+from tempfile import mkdtemp
+from werkzeug.exceptions import default_exceptions
+from werkzeug.security import check_password_hash, generate_password_hash
+
 mod = Blueprint('register', __name__)
 
 #Must use mod since we're in Blueprint

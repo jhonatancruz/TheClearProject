@@ -1,11 +1,10 @@
-from twilio import twiml
-from math import cos, asin, sqrt
-from cs50 import SQL
-from twilio.twiml.messaging_response import MessagingResponse
+# from twilio import twiml
+# from math import cos, asin, sqrt
+# from cs50 import SQL
+# from twilio.twiml.messaging_response import MessagingResponse
+
 from flask import Flask, flash, redirect, render_template, request, session
-from tempfile import mkdtemp
-from werkzeug.exceptions import default_exceptions
-from werkzeug.security import check_password_hash, generate_password_hash
+
 
 app= Flask(__name__)
 
@@ -14,24 +13,24 @@ db = SQL("sqlite:///database.db")
 # use db.execute("YOUR SQL CODE HERE")
 #   -- Will always return a list of dicts, which you must index into as follows
 #   ----[int][key] like [0]["description"] will return first row's description
+#
+# phase = 0
+# score = 0
+# global locationSet
+# locationSet = False
+# key = 0
 
-phase = 0
-score = 0
-global locationSet
-locationSet = False
-key = 0
-
-# Ensure responses aren't cached
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+# # Ensure responses aren't cached
+# @app.after_request
+# def after_request(response):
+#     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+#     response.headers["Expires"] = 0
+#     response.headers["Pragma"] = "no-cache"
+#     return response
+#
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 # @app.route('/register', methods=["GET", "POST"])
 # def register():
