@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, Blueprint
 from twilio import twiml
 from math import cos, asin, sqrt
 from cs50 import SQL
-# from twilio.twiml.messaging_response import MessagingResponse
+from twilio.twiml.messaging_response import MessagingResponse
 from .. import config
 
 mod = Blueprint('bot', __name__)
@@ -85,7 +85,7 @@ def sms_reply():
             return str(resp)
         if message_body.startswith("n") :
             set_score(3)
-            resp.message("We've set your filtration repair to the HIGHEST PRIORITY. Please be patient, help is on the way.")
+            resp.message("We've set your filtration repair to the HIGHEST PRIORITY. Please be patient, help is on the way. Options: (i)ssue, (o)ptions, (s)tatus, (f)inish")
             phase = 2
             return str(resp)
 
@@ -100,7 +100,7 @@ def sms_reply():
             return str(resp)
         if message_body.startswith("n") :
             set_score(3)
-            resp.message("We've set your filtration repair to the HIGHEST PRIORITY. Please be patient, help is on the way.")
+            resp.message("We've set your filtration repair to the HIGHEST PRIORITY. Please be patient, help is on the way. Options: (i)ssue, (o)ptions, (s)tatus, (f)inish")
             phase = 2
             return str(resp)
 

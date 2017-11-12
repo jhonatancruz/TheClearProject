@@ -73,22 +73,25 @@ function myMap() {
     if (stations[i].status == 0){
       status_readable = "Excellent condition!";
       var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterGreen.png";
+      var button_help = '';
     };
 
     if (stations[i].status == 1){
       status_readable = "Beginning to show signs of breakdown.";
       var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterYellow.png";
+      var button_help = '<a href= "/login" class="btn btn-warning btn-xs">Help this station</a>'
     };
 
     if (stations[i].status == 2){
       status_readable = "Frequently malfunctioning.";
       var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterOrange.png";
+      var button_help = '<a href= "/login" class="btn btn-danger btn-xs">Help this station</a>'
     };
 
     if (stations[i].status == 3){
       status_readable = "Disrepair.";
       var image = "https://raw.githubusercontent.com/jhonatancruz/TheClearProject/master/TheClearProject/static/img/waterRed.png";
-
+      var button_help = '<a href= "/login" class="btn btn-danger btn-xs">Help this station</a>'
     };
 
     //var image = "/img/waterGreen.png";
@@ -123,7 +126,7 @@ function myMap() {
 
     content_each += descrip;
 
-    content_each += '<a href= "/login" class="btn btn-danger btn-xs">Help this station</a>';
+    content_each += button_help;
 
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
