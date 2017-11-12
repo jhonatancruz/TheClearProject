@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, Blueprint
 from twilio import twiml
+from twilio.rest import Client
 from math import cos, asin, sqrt
 from cs50 import SQL
 from twilio.twiml.messaging_response import MessagingResponse
@@ -273,6 +274,32 @@ def is_valid_percent(s):
     return True
 
 #need to fill this in.
-def send_status_update_texts(station, helper_session) :
-    info = config.db.execute("SELECT * FROM helper_session WHERE station_id = :station_id", station_id = key)
+def send_status_update_texts(helper_session_id) :
+    pledge = config.db.execute("SELECT * FROM helper_session WHERE helper_id = : h_id", h_id = helper_session_id)
+
+    station = pledge[0]["station_id"]
+    date = pledge[0]["pledge_date"]
+    message = pledge[0]["pledge_description"]
+
+    info = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id", station_id = station)
+
+    account_sid = "AC46e1d5340ffeea6259cf5e6ddfec3d9f"
+    auth_token = "2396c4d445849f99f3ccb0589b8a2cf0"
+
+    client = Client(account_sid, auth_token)
+
+    helper_id2 = pledge[0]["helper_id"]
+
+    helper_info = config.db.execute("SELECT * FROM helper_users WHERE helper_id = :helper_data", helper_data = helper_id2)
+
+    name = helper_info[0]["name"]
+
+    true_message = "MESSAGE FROM " + str(name) + ": " + str(message) + " by " + str(date) + "."
+
+    for x in range(len(info)) :
+        client.messages.create(
+            to = info[x]["client_phone"]
+            from = "+1 267-463-4759 "
+            body = true_message
+        )
     return
