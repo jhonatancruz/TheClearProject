@@ -5,8 +5,10 @@ from twilio import twiml
 from math import cos, asin, sqrt
 from cs50 import SQL
 from twilio.twiml.messaging_response import MessagingResponse
+from .. import config
 
 mod = Blueprint('bot', __name__)
+phase, score, key, locationSet = 0, 0, 0, False
 
 #Must use mod since we're in Blueprint
 @mod.route('/bot')

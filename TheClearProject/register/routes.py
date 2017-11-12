@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from flask import Flask, render_template, request, Blueprint
+from .. import config
 
 #REMOVE LOGINS IF NOT NEEDED
 from tempfile import mkdtemp
