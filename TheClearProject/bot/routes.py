@@ -34,21 +34,21 @@ def sms_reply():
     resp = MessagingResponse()
     #resp = twiml.Response()
 
+
     if phase == 0 :
         phase = phase + 1
         resp.message("Welcome! Please enter your Longitude and Latitude, seperated by a space")
         return str(resp)
 
     if phase == 1 :
+
         coords = get_coords(message_body)
 
         if is_valid_coords(coords) :
             longitude = float(coords[0])
             latitude = float(coords[1])
-
             phase = 2
             resp.message("Your location has been received! What would you like to do?((i)ssue, (o)ptions, (s)tatus, (f)inish)")
-
             get_water_info(longitude, latitude, number)
             return str(resp)
         else :
@@ -158,9 +158,8 @@ def sms_reply():
 #4 = multiple people saying its horrible. 4 is the same as 3 on the map in terms of color and severity,
 #except we prioritize it above 3.
 def get_water_info(longitude, latitude, number) :
-
     stations = config.db.execute("SELECT * FROM stations")
-
+    #print(stations)
     distance = 9999999
     index = 0
 
@@ -176,27 +175,38 @@ def get_water_info(longitude, latitude, number) :
     global key
     key = index
 
+
     global score
     score = stations[key]["status"]
+    #Checking to see if
+    print("key is : " + str(key))
+    print("number is : " + str(number))
+    numbers = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id AND client_phone = :p_number",station_id = int(key), p_number = str(number))
+    #numbers = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id AND client_phone = :number", station_id = int(key), number = number)
 
-    numbers = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id AND client_phone = :number", station_id = key, number = number)
-
+    print("numbers incoming:")
+    print(numbers)
     if len(numbers) == 0:
-        config.db.execute("INSERT INTO client_session (client_session_id, client_phone, station_id) VALUES (:id,:number,:key)", id = 1, number = number,key = key)
-
+        config.db.execute("INSERT INTO client_session (client_phone, station_id) VALUES (:p_number,:key)", p_number = str(number),key = int(key))
+        print("I just inserted")
     #config.db.execute("UPDATE stations SET status = :amount WHERE station_id = :key", amount = amount, key = key)
 
     return
 
 #formats our long/lat input so that its more user friendly.
-def get_coords(str) :
-    coords = str.split(", ")
+def get_coords(string) :
+    try:
+        coords = string.split(", ")
 
+    except ValueError:
+        coords = string.split(" ").split(" ")
+
+    return coords
     if len(coords) != 2 :
-        coords = str.split(" ")
+        coords = string.split(" ")
 
     if len (coords) != 2 :
-        coords = str.split(",")
+        coords = string.split(",")
 
     return coords
 
