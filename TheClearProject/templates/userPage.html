@@ -33,6 +33,11 @@
 
   <!-- Custom styles for this template -->
   <link href="signin.css" rel="stylesheet">
+  <style>
+  #maps{
+    background-image: image("static/img/header.jpg");
+  }
+  </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar fixed-top" id="mainNav">
@@ -48,11 +53,9 @@
   </div>
 </nav>
 <section class="bg-primary" id="maps">
-  <div id="googleMap" style="width:50%;height:400px;"></div>
-
-    <script src = "/static/js/maps.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
+      <div id="googleMap" style="width:100%;height:400px;"></div>
+        <script src = "/static/js/maps.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLlGnDH8lP4MOvUgo16vxK149VX0x1PyQ&callback=myMap"></script>
 </section>
 <section><center>
   <h2>Your Pledge</h2>
@@ -68,19 +71,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
+        <td>Dont know yet</td>
+        <td>{{what}}</td>
+        <td>{{when}}</td>
       </tr>
     </tbody>
   </table>

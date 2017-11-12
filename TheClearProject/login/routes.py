@@ -15,12 +15,17 @@ mod = Blueprint('login', __name__)
 
 @mod.route('/userPage', methods=["GET","POST"])
 def userPage():
-    return render_template("userPage.html")
+    # where=config.db.execute("SELECT sponsor FROM stations WHERE station_id==(SELECT ))
+    what= config.db.execute("SELECT pledge_description FROM helper_session WHERE helper_id==1")
+    when= config.db.execute("SELECT pledge_date FROM helper_session WHERE helper_id==1")
+    # print(what[])
+    return render_template("userPage.html", what=what, when=when)
+
+    # Kenya: sponsor
 
 @mod.route('/login', methods=["GET", "POST"])
 def login():
     """Log user in"""
-
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -38,6 +43,9 @@ def login():
         user = config.db.execute("SELECT username, hash FROM helper_users")
         username= user[0]["username"]
         password= user[0]["hash"]
+
+        print(username, password)
+
 
         if request.form.get("username")== username and request.form.get("password")== password:
             return redirect(url_for('login.userPage'))
