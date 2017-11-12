@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, Blueprint
 from .. import config
+import json
 
 mod = Blueprint('misc', __name__)
 
@@ -16,4 +17,5 @@ def after_request(response):
 
 @mod.route('/')
 def index():
-    return render_template('index.html')
+    stations = config.db.execute("SELECT * FROM stations")
+    return render_template('index.html', stations_lofd = stations, stations_json = json.dumps(stations))
