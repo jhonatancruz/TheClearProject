@@ -63,15 +63,17 @@ function myMap() {
 
   //alert(stations[1].sponsor);
   var length = parseInt(stations.length);
-  alert(length);
 
   //hardcoded 9 in to test, but should be length.
   for(i = 0; i < 9; i++) {
     var position = new google.maps.LatLng(stations[i].latitude, stations[i].longitude);
-		var marker = new google.maps.Marker({
+    var image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    //var image = "/img/waterGreen.png";
+    var marker = new google.maps.Marker({
 			position: position,
 			map: map,
       styles: styles,
+      icon: image,
 		});
 
     //Ensures legit descriptions are displayed.
