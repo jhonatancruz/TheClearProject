@@ -16,6 +16,10 @@ phase, score, key = 0, 0, 0
 def homepage():
     return "<h1>homepage!</h1>"
 
+@mod.route('/textAll')
+def textAll():
+    send_status_update_texts("3")
+    return "Thank you for your pledge!"
 
 #bot for sat phones
 @mod.route("/sms", methods=['GET', 'POST'])
@@ -34,7 +38,6 @@ def sms_reply():
     print(message_body + "  "+ number)
     resp = MessagingResponse()
     #resp = twiml.Response()
-
 
     if phase == 0 :
         phase = phase + 1
@@ -275,31 +278,27 @@ def is_valid_percent(s):
 
 #need to fill this in.
 def send_status_update_texts(helper_session_id) :
-    pledge = config.db.execute("SELECT * FROM helper_session WHERE helper_id = : h_id", h_id = helper_session_id)
-
+    pledge = config.db.execute("SELECT * FROM helper_session WHERE helper_session_id = :h_id", h_id = helper_session_id)
     station = pledge[0]["station_id"]
     date = pledge[0]["pledge_date"]
     message = pledge[0]["pledge_description"]
-
-    info = config.db.execute("SELECT * FROM client_session WHERE station_id = :station_id", station_id = station)
-
+    print(str(station))
+ 
     account_sid = "AC46e1d5340ffeea6259cf5e6ddfec3d9f"
     auth_token = "2396c4d445849f99f3ccb0589b8a2cf0"
 
     client = Client(account_sid, auth_token)
+    client_phone = "+18569055835"
 
     helper_id2 = pledge[0]["helper_id"]
-
     helper_info = config.db.execute("SELECT * FROM helper_users WHERE helper_id = :helper_data", helper_data = helper_id2)
 
+    
     name = helper_info[0]["name"]
-
     true_message = "MESSAGE FROM " + str(name) + ": " + str(message) + " by " + str(date) + "."
 
-    for x in range(len(info)) :
-        client.messages.create(
-            to = info[x]["client_phone"]
-            from = "+1 267-463-4759 "
-            body = true_message
-        )
-    return
+    client.messages.create(
+        to = str(client_phone),
+        from_= "+12674634759",
+        body = true_message
+    )
