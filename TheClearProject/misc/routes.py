@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from flask import Flask, render_template, request, Blueprint
+from .. import config
 
 mod = Blueprint('misc', __name__)
 
@@ -11,8 +12,6 @@ def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
-    global hello
-    print(hello)
     return response
 
 @mod.route('/')

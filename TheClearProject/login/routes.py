@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from flask import Flask, render_template, request, Blueprint
+from cs50 import SQL
 
 #REMOVE LIBRARIES IF NOT NEEDED
 from tempfile import mkdtemp
